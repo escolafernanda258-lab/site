@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Catálogo premium de designer de sobrancelhas">
+<title>Auréa Brow Studio | Sobrancelhas</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root{
+  --black:#070707;
+  --black2:#101010;
+  --gold:#c8a45d;
+  --gold2:#efd28b;
+  --cream:#f4ede0;
+  --white:#fffaf1;
+  --gray:#aaa49a;
+  --line:rgba(200,164,93,.28);
+  --shadow:0 25px 70px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Montserrat',sans-serif;line-height:1.6}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+img{max-width:100%;display:block}
+.container{width:min(1180px,92%);margin:auto}
+.section{padding:95px 0}
+.section-head{text-align:center;margin-bottom:45px}
+.kicker{color:var(--gold2);font-size:10px;text-transform:uppercase;letter-spacing:4px;font-weight:600}
+.section-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(45px,6vw,68px);font-weight:500;line-height:1;margin:9px 0 12px}
+.section-head p{color:var(--gray);font-size:12px;max-width:650px;margin:auto}
+.gold{color:var(--gold2)}
+.btn{
+  border:1px solid var(--gold);background:var(--gold);color:#090909;
+  padding:13px 22px;border-radius:3px;font-weight:700;font-size:10px;
+  letter-spacing:1.5px;text-transform:uppercase;display:inline-flex;
+  align-items:center;justify-content:center;gap:8px;transition:.25s
+}
+.btn:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--gold2)}
+.btn-outline:hover{background:var(--gold);color:#000}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(7,7,7,.9);backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Cormorant Garamond',serif;font-size:30px;line-height:.8;white-space:nowrap}
+.logo small{display:block;font-family:'Montserrat';font-size:7px;letter-spacing:3px;color:var(--gold2);text-align:center;margin-top:9px}
+nav ul{display:flex;gap:28px;list-style:none}
+nav a{font-size:10px;text-transform:uppercase;letter-spacing:1.4px;color:#ddd;transition:.2s}
+nav a:hover{color:var(--gold2)}
+.menu{display:none;background:none;border:0;color:var(--gold2);font-size:25px}
+
+/* HERO */
+.hero{
+ min-height:100vh;padding-top:76px;display:flex;align-items:center;position:relative;overflow:hidden;
+ background:
+ linear-gradient(90deg,rgba(4,4,4,.98) 0%,rgba(4,4,4,.84) 42%,rgba(4,4,4,.2) 100%),
+ url('https://gmcilios.com.br/wp-content/uploads/2024/03/DESIGN-DE-SOBRANCELHA-4.jpg') center/cover;
+}
+.hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:180px;background:linear-gradient(transparent,var(--black))}
+.hero-content{position:relative;z-index:2;max-width:650px;padding:70px 0}
+.hero h1{font-family:'Cormorant Garamond';font-size:clamp(65px,9vw,112px);font-weight:500;line-height:.78;margin:20px 0 28px}
+.hero h1 span{display:block;color:var(--gold2);font-style:italic}
+.hero p{color:#ddd;max-width:540px;font-size:14px;margin-bottom:30px}
+.hero-buttons{display:flex;gap:10px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:42px;margin-top:50px}
+.stat strong{display:block;color:var(--gold2);font-family:'Cormorant Garamond';font-size:31px}
+.stat span{display:block;color:#999;font-size:8px;text-transform:uppercase;letter-spacing:1.5px}
+
+/* BENEFITS */
+.benefits{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#0b0b0b}
+.benefit-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.benefit{text-align:center;padding:28px 15px;border-right:1px solid var(--line)}
+.benefit:last-child{border-right:0}
+.benefit .icon{color:var(--gold2);font-size:25px;margin-bottom:4px}
+.benefit h3{font-size:10px;text-transform:uppercase;letter-spacing:1px}
+.benefit p{color:#888;font-size:9px}
+
+/* SERVICES */
+.filters{display:flex;justify-content:center;gap:8px;margin-bottom:35px;flex-wrap:wrap}
+.filter{background:transparent;border:1px solid var(--line);color:#aaa;padding:9px 17px;border-radius:30px;font-size:9px;text-transform:uppercase;letter-spacing:1px}
+.filter.active,.filter:hover{background:var(--gold);border-color:var(--gold);color:#000}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:linear-gradient(145deg,#151515,#0d0d0d);border:1px solid rgba(255,255,255,.07);border-radius:7px;overflow:hidden;transition:.3s}
+.card:hover{transform:translateY(-5px);border-color:var(--line);box-shadow:var(--shadow)}
+.card-img{height:280px;position:relative;overflow:hidden}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.card:hover img{transform:scale(1.06)}
+.badge{position:absolute;top:12px;left:12px;background:rgba(5,5,5,.85);border:1px solid var(--line);color:var(--gold2);padding:6px 9px;font-size:7px;text-transform:uppercase;letter-spacing:1px}
+.card-body{padding:20px}
+.card-body h3{font-family:'Cormorant Garamond';font-size:29px;font-weight:600}
+.card-body p{font-size:10px;color:#999;min-height:45px;margin:5px 0 14px}
+.meta{display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;margin-bottom:14px}
+.meta span{font-size:9px;color:#aaa}
+.price{color:var(--gold2)!important;font-size:15px!important;font-weight:700}
+.card-buttons{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.card-buttons .btn{padding:10px 5px;font-size:8px}
+
+/* BEFORE AFTER */
+.before-after{background:#0c0c0c}
+.ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ba-card{position:relative;height:360px;overflow:hidden;border:1px solid rgba(255,255,255,.08);border-radius:5px}
+.ba-card img{width:100%;height:100%;object-fit:cover}
+.ba-label{position:absolute;bottom:12px;left:12px;right:12px;background:rgba(0,0,0,.78);border:1px solid var(--line);padding:10px;color:var(--gold2);font-family:'Cormorant Garamond';font-size:19px;text-align:center}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:9px}
+.gallery-item{overflow:hidden;position:relative;border-radius:4px}
+.gallery-item:nth-child(1){grid-row:span 2}
+.gallery-item:nth-child(4){grid-column:span 2}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.gallery-item:hover img{transform:scale(1.07)}
+.gallery-overlay{position:absolute;left:0;right:0;bottom:0;padding:35px 13px 12px;background:linear-gradient(transparent,rgba(0,0,0,.8));font-size:9px;color:var(--gold2);text-transform:uppercase;letter-spacing:1px}
+
+/* ABOUT */
+.about{background:#0c0c0c}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.about-photo{position:relative}
+.about-photo img{height:570px;width:100%;object-fit:cover;border-radius:4px}
+.about-photo:before{content:"";position:absolute;inset:-12px 12px 12px -12px;border:1px solid var(--gold);z-index:0;border-radius:4px}
+.about-photo img{position:relative;z-index:1}
+.about-copy h2{font-family:'Cormorant Garamond';font-size:61px;font-weight:500;line-height:.9;margin:10px 0 22px}
+.about-copy p{font-size:12px;color:#999;margin-bottom:15px}
+.checks{display:grid;gap:11px;margin:24px 0}
+.check{font-size:10px;color:#ddd}
+.check b{color:var(--gold2);margin-right:8px}
+
+/* TESTIMONIALS */
+.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.review{padding:28px;background:#101010;border:1px solid rgba(255,255,255,.08)}
+.stars{color:var(--gold2);letter-spacing:3px;font-size:11px}
+.review p{font-family:'Cormorant Garamond';font-size:21px;line-height:1.25;margin:17px 0}
+.client{display:flex;gap:10px;align-items:center}
+.avatar{width:38px;height:38px;border-radius:50%;object-fit:cover}
+.client strong{display:block;font-size:10px}
+.client small{display:block;color:#777;font-size:8px}
+
+/* BOOKING */
+.booking{
+ background:linear-gradient(90deg,rgba(5,5,5,.96),rgba(5,5,5,.82)),
+ url('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1700&q=90') center/cover;
+}
+.booking-box{max-width:800px;margin:auto;text-align:center;padding:70px 25px;border:1px solid var(--line);background:rgba(5,5,5,.7)}
+.booking-box h2{font-family:'Cormorant Garamond';font-size:64px;line-height:.95;font-weight:500;margin:10px 0 12px}
+.booking-box p{color:#999;font-size:12px;max-width:570px;margin:0 auto 25px}
+.booking-buttons{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+
+/* FOOTER */
+footer{background:#050505;border-top:1px solid var(--line);padding:55px 0 25px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:35px}
+.footer-title{font-family:'Cormorant Garamond';font-size:29px;color:var(--gold2)}
+footer h4{font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--gold2);margin-bottom:13px}
+footer p,footer a{font-size:9px;color:#888;margin:6px 0;display:block}
+footer a:hover{color:var(--gold2)}
+.copyright{border-top:1px solid rgba(255,255,255,.07);margin-top:32px;padding-top:17px;text-align:center;color:#555;font-size:8px}
+
+/* MODAL */
+.modal-backdrop{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;padding:18px}
+.modal-backdrop.open{display:flex}
+.modal{width:min(700px,100%);max-height:90vh;overflow:auto;background:#111;border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow)}
+.modal-top{position:relative}
+.modal-top img{width:100%;height:310px;object-fit:cover}
+.close{position:absolute;right:12px;top:12px;background:rgba(0,0,0,.8);border:1px solid var(--line);color:white;width:38px;height:38px;border-radius:50%;font-size:20px}
+.modal-content{padding:26px}
+.modal-content h2{font-family:'Cormorant Garamond';font-size:42px;font-weight:500}
+.modal-content p{color:#999;font-size:11px;margin:7px 0 18px}
+.detail-meta{display:flex;gap:35px;margin-bottom:18px;color:#888;font-size:9px}
+.detail-meta strong{display:block;color:var(--gold2);font-size:18px}
+.care{border-top:1px solid rgba(255,255,255,.08)}
+.care button{width:100%;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.08);color:#ddd;padding:14px 0;text-align:left;font-size:10px;display:flex;justify-content:space-between}
+.care div{display:none;color:#888;font-size:9px;padding:12px 0}
+.care.open div{display:block}
+.modal-footer{display:flex;gap:8px;margin-top:20px}
+.modal-footer .btn{flex:1}
+
+/* CART */
+.cart-panel{position:fixed;z-index:2100;right:0;top:0;width:min(410px,100%);height:100vh;background:#0c0c0c;border-left:1px solid var(--line);padding:24px;transform:translateX(100%);transition:.3s;overflow:auto}
+.cart-panel.open{transform:translateX(0)}
+.cart-header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:17px}
+.cart-header h3{font-family:'Cormorant Garamond';font-size:31px;font-weight:500}
+.cart-item{display:flex;gap:11px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.cart-item img{width:68px;height:68px;object-fit:cover;border-radius:4px}
+.cart-item h4{font-size:10px}.cart-item p{font-size:8px;color:#777}
+.cart-total{display:flex;justify-content:space-between;margin:21px 0;font-size:11px}
+.cart-total strong{color:var(--gold2);font-size:18px}
+.empty{text-align:center;color:#666;font-size:10px;padding:50px 0}
+
+/* MOBILE */
+@media(max-width:900px){
+ nav ul{display:none}
+ .menu{display:block}
+ .service-grid{grid-template-columns:repeat(2,1fr)}
+ .about-grid{grid-template-columns:1fr;gap:45px}
+ .testimonial-grid{grid-template-columns:1fr}
+ .footer-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+ .nav .btn{display:none}
+ .hero{background-position:65% center}
+ .hero h1{font-size:65px}
+ .hero-stats{gap:22px}
+ .benefit-grid{grid-template-columns:1fr 1fr}
+ .benefit{border-bottom:1px solid var(--line)}
+ .service-grid,.ba-grid{grid-template-columns:1fr}
+ .card-img{height:300px}
+ .gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:170px}
+ .gallery-item:nth-child(1){grid-row:span 1}
+ .gallery-item:nth-child(4){grid-column:span 1}
+ .about-copy h2{font-size:51px}
+ .about-photo img{height:450px}
+ .footer-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container nav">
+  <a href="#inicio" class="logo">Auréa Brow Studio<small>DESIGNER DE SOBRANCELHAS</small></a>
+  <nav>
+    <ul>
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#resultados">Resultados</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+  <div style="display:flex;gap:10px;align-items:center">
+    <button class="btn btn-outline" onclick="toggleCart()">🛍 Selecionados <span id="cartCount">0</span></button>
+    <a class="btn" href="#contato">Agendar</a>
+    <button class="menu">☰</button>
+  </div>
+</div>
+</header>
+
+<main>
+
+<section class="hero" id="inicio">
+ <div class="container">
+  <div class="hero-content">
+   <div class="kicker">Brow Designer • Beleza & Precisão</div>
+   <h1>Suas sobrancelhas,<span>sua assinatura.</span></h1>
+   <p>Design personalizado para valorizar o formato do seu rosto, respeitar a sua personalidade e deixar suas sobrancelhas impecáveis.</p>
+   <div class="hero-buttons">
+    <a class="btn" href="#servicos">Conhecer serviços ✦</a>
+    <a class="btn btn-outline" href="#contato">Agendar horário</a>
+   </div>
+   <div class="hero-stats">
+    <div class="stat"><strong>+500</strong><span>Atendimentos</span></div>
+    <div class="stat"><strong>4.9 ★</strong><span>Avaliação</span></div>
+    <div class="stat"><strong>100%</strong><span>Personalizado</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="benefits">
+ <div class="container benefit-grid">
+  <div class="benefit"><div class="icon">✦</div><h3>Design exclusivo</h3><p>Formato pensado para você</p></div>
+  <div class="benefit"><div class="icon">♢</div><h3>Técnica profissional</h3><p>Precisão em cada detalhe</p></div>
+  <div class="benefit"><div class="icon">♡</div><h3>Resultado natural</h3><p>Harmonia e elegância</p></div>
+  <div class="benefit"><div class="icon">⌂</div><h3>Ambiente acolhedor</h3><p>Uma experiência especial</p></div>
+ </div>
+</section>
+
+<section class="section" id="servicos">
+ <div class="container">
+  <div class="section-head">
+   <div class="kicker">Catálogo exclusivo</div>
+   <h2>Serviços de sobrancelhas</h2>
+   <p>Escolha o procedimento que combina com o seu estilo e deixe o design do seu olhar nas mãos de uma profissional.</p>
+  </div>
+  <div class="filters">
+   <button class="filter active" data-filter="all">Todos</button>
+   <button class="filter" data-filter="design">Design</button>
+   <button class="filter" data-filter="henna">Henna</button>
+   <button class="filter" data-filter="lamination">Brow Lamination</button>
+  </div>
+  <div class="service-grid" id="serviceGrid"></div>
+ </div>
+</section>
+
+<section class="section before-after" id="resultados">
+ <div class="container">
+  <div class="section-head">
+   <div class="kicker">Transformações reais</div>
+   <h2>Antes & depois</h2>
+   <p>Pequenos detalhes podem transformar completamente a expressão do rosto.</p>
+  </div>
+  <div class="ba-grid">
+   <div class="ba-card"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=900&q=90"><div class="ba-label">Design personalizado</div></div>
+   <div class="ba-card"><img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?auto=format&fit=crop&w=900&q=90"><div class="ba-label">Design + Henna</div></div>
+   <div class="ba-card"><img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=900&q=90"><div class="ba-label">Brow Lamination</div></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="galeria">
+ <div class="container">
+  <div class="section-head">
+   <div class="kicker">Inspire-se</div>
+   <h2>Galeria de sobrancelhas</h2>
+   <p>Uma seleção de estilos, formatos e acabamentos para você encontrar sua inspiração.</p>
+  </div>
+  <div class="gallery-grid">
+   <div class="gallery-item"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=900&q=90"><div class="gallery-overlay">Design natural</div></div>
+   <div class="gallery-item"><img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?auto=format&fit=crop&w=700&q=90"><div class="gallery-overlay">Arco definido</div></div>
+   <div class="gallery-item"><img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=700&q=90"><div class="gallery-overlay">Brow Lamination</div></div>
+   <div class="gallery-item"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1000&q=90"><div class="gallery-overlay">Resultado sofisticado</div></div>
+   <div class="gallery-item"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=700&q=90"><div class="gallery-overlay">Design + Henna</div></div>
+   <div class="gallery-item"><img src="https://images.unsplash.com/photo-1589710751893-f9a6770ad71b?auto=format&fit=crop&w=700&q=90"><div class="gallery-overlay">Acabamento delicado</div></div>
+  </div>
+ </div>
+</section>
+
+<section class="section about" id="sobre">
+ <div class="container about-grid">
+  <div class="about-photo"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1000&q=90" alt="Profissional de sobrancelhas"></div>
+  <div class="about-copy">
+   <div class="kicker">Sobre o atendimento</div>
+   <h2>Seu rosto merece um <span class="gold">design único.</span></h2>
+   <p>Cada sobrancelha tem uma história, um formato e uma personalidade. Por isso, o atendimento começa com uma análise individual para encontrar o desenho que mais valoriza seus traços.</p>
+   <p>Meu objetivo é entregar um resultado elegante, confortável e harmonioso, sem transformar sua identidade.</p>
+   <div class="checks">
+    <div class="check"><b>✦</b> Visagismo e análise do formato do rosto</div>
+    <div class="check"><b>✦</b> Design personalizado de sobrancelhas</div>
+    <div class="check"><b>✦</b> Técnicas de henna e Brow Lamination</div>
+    <div class="check"><b>✦</b> Orientação de cuidados após o procedimento</div>
+   </div>
+   <a class="btn" href="#contato">Agendar atendimento</a>
+  </div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="container">
+  <div class="section-head">
+   <div class="kicker">Depoimentos</div>
+   <h2>Elas amaram o resultado</h2>
+   <p>Experiências de clientes que escolheram cuidar das sobrancelhas com a Auréa.</p>
+  </div>
+  <div class="testimonial-grid">
+   <article class="review"><div class="stars">★★★★★</div><p>“Minha sobrancelha ficou muito mais harmônica. O design respeitou totalmente meu formato natural.”</p><div class="client"><img class="avatar" src="https://i.pravatar.cc/100?img=47"><div><strong>Mariana S.</strong><small>Cliente Auréa</small></div></div></article>
+   <article class="review"><div class="stars">★★★★★</div><p>“Amei o resultado da henna! Ficou definida, mas ainda muito natural. Atendimento impecável.”</p><div class="client"><img class="avatar" src="https://i.pravatar.cc/100?img=32"><div><strong>Larissa T.</strong><small>Cliente Auréa</small></div></div></article>
+   <article class="review"><div class="stars">★★★★★</div><p>“Fiz Brow Lamination e fiquei apaixonada. Os fios ficaram alinhados e meu rosto ganhou outra expressão.”</p><div class="client"><img class="avatar" src="https://i.pravatar.cc/100?img=44"><div><strong>Jéssica M.</strong><small>Cliente Auréa</small></div></div></article>
+  </div>
+ </div>
+</section>
+
+<section class="section booking" id="contato">
+ <div class="container">
+  <div class="booking-box">
+   <div class="kicker">Reserve seu momento</div>
+   <h2>Pronta para transformar suas sobrancelhas?</h2>
+   <p>Escolha seu procedimento no catálogo ou fale comigo pelo WhatsApp para tirar dúvidas e encontrar o melhor horário.</p>
+   <div class="booking-buttons">
+    <a class="btn" id="whatsMain" target="_blank" href="#">Agendar pelo WhatsApp</a>
+    <a class="btn btn-outline" href="https://instagram.com/" target="_blank">Instagram</a>
+   </div>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <div class="container">
+  <div class="footer-grid">
+   <div><div class="footer-title">Auréa Brow Studio</div><p>Designer de sobrancelhas com foco em harmonia, naturalidade e sofisticação.</p></div>
+   <div><h4>Menu</h4><a href="#inicio">Início</a><a href="#servicos">Serviços</a><a href="#resultados">Resultados</a><a href="#galeria">Galeria</a></div>
+   <div><h4>Horários</h4><p>Seg — Sex: 09h às 19h</p><p>Sábado: 09h às 15h</p><p>Domingo: Fechado</p></div>
+   <div><h4>Contato</h4><a id="whatsFooter" href="#" target="_blank">WhatsApp</a><a href="https://instagram.com/" target="_blank">Instagram</a><p>Goiânia • GO</p></div>
+  </div>
+  <div class="copyright">© 2026 Auréa Brow Studio • Todos os direitos reservados.</div>
+ </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="serviceModal">
+ <div class="modal">
+  <div class="modal-top"><img id="modalImg" src="" alt=""><button class="close" onclick="closeModal()">×</button></div>
+  <div class="modal-content">
+   <div class="kicker" id="modalCategory"></div>
+   <h2 id="modalTitle"></h2>
+   <p id="modalDesc"></p>
+   <div class="detail-meta">
+    <span><strong id="modalTime"></strong>Duração</span>
+    <span><strong id="modalPrice"></strong>Investimento</span>
+   </div>
+   <div class="care"><button onclick="toggleCare(this)">Como funciona <span>+</span></button><div>O procedimento começa com uma análise do formato do rosto e das sobrancelhas. Depois, é realizado o desenho e o acabamento adequado ao seu estilo.</div></div>
+   <div class="care"><button onclick="toggleCare(this)">Cuidados antes <span>+</span></button><div>Evite retirar os pelos em casa nos dias anteriores. Venha com a região limpa e sem produtos oleosos.</div></div>
+   <div class="care"><button onclick="toggleCare(this)">Cuidados depois <span>+</span></button><div>Evite atrito excessivo e siga as orientações recebidas no atendimento para preservar o resultado.</div></div>
+   <div class="modal-footer">
+    <button class="btn btn-outline" onclick="addCurrentToCart()">Selecionar serviço</button>
+    <a class="btn" id="modalWhats" target="_blank">Agendar agora</a>
+   </div>
+  </div>
+ </div>
+</div>
+
+<!-- CART -->
+<aside class="cart-panel" id="cartPanel">
+ <div class="cart-header"><h3>Minha seleção</h3><button class="close" onclick="toggleCart()">×</button></div>
+ <div id="cartItems"></div>
+ <div class="cart-total"><span>Total selecionado</span><strong id="cartTotal">R$ 0,00</strong></div>
+ <a class="btn" id="cartWhats" target="_blank" style="width:100%">Agendar seleção pelo WhatsApp</a>
+</aside>
+
+<script>
+const services=[
+ {id:1,type:'design',category:'Design',name:'Design de Sobrancelhas',price:60,time:'40 min',badge:'Clássico',desc:'Modelagem personalizada que valoriza o formato do seu rosto e preserva a naturalidade.',img:'https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=900&q=90'},
+ {id:2,type:'henna',category:'Design + Henna',name:'Design + Henna',price:80,time:'1h',badge:'Mais pedido',desc:'Mais definição e preenchimento para sobrancelhas marcantes, elegantes e harmoniosas.',img:'https://images.unsplash.com/photo-1620331311520-246422fd82f9?auto=format&fit=crop&w=900&q=90'},
+ {id:3,type:'lamination',category:'Brow Lamination',name:'Brow Lamination',price:120,time:'1h30',badge:'Tendência',desc:'Fios alinhados e penteados para um efeito moderno, volumoso e sofisticado.',img:'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=900&q=90'},
+ {id:4,type:'design',category:'Design',name:'Design Premium',price:90,time:'1h',badge:'Premium',desc:'Uma experiência completa com análise facial, desenho personalizado e acabamento detalhado.',img:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=90'},
+ {id:5,type:'henna',category:'Henna',name:'Henna Premium',price:65,time:'45 min',badge:'Definição',desc:'Realce a cor e o desenho dos fios com acabamento sofisticado e natural.',img:'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=90'},
+ {id:6,type:'design',category:'Design',name:'Manutenção do Design',price:50,time:'30 min',badge:'Prático',desc:'Manutenção do desenho para manter suas sobrancelhas sempre alinhadas e bonitas.',img:'https://images.unsplash.com/photo-1589710751893-f9a6770ad71b?auto=format&fit=crop&w=900&q=90'}
+];
+
+let selected=[];
+let currentService=null;
+const whatsapp='5500000000000'; // TROQUE pelo WhatsApp real: 55 + DDD + número
+
+function money(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}
+
+function renderServices(filter='all'){
+ const grid=document.getElementById('serviceGrid');
+ grid.innerHTML=services.filter(s=>filter==='all'||s.type===filter).map(s=>`
+ <article class="card">
+  <div class="card-img"><img src="${s.img}" alt="${s.name}" loading="lazy"><span class="badge">${s.badge}</span></div>
+  <div class="card-body">
+   <h3>${s.name}</h3><p>${s.desc}</p>
+   <div class="meta"><span>⏱ ${s.time}</span><span class="price">${money(s.price)}</span></div>
+   <div class="card-buttons">
+    <button class="btn btn-outline" onclick="openModal(${s.id})">Ver detalhes</button>
+    <button class="btn" onclick="addToCart(${s.id})">Selecionar</button>
+   </div>
+  </div>
+ </article>`).join('');
+}
+document.querySelectorAll('.filter').forEach(btn=>{
+ btn.addEventListener('click',()=>{
+  document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));
+  btn.classList.add('active');renderServices(btn.dataset.filter);
+ });
+});
+
+function openModal(id){
+ currentService=services.find(s=>s.id===id);
+ const s=currentService;
+ document.getElementById('modalImg').src=s.img;
+ document.getElementById('modalCategory').textContent=s.category;
+ document.getElementById('modalTitle').textContent=s.name;
+ document.getElementById('modalDesc').textContent=s.desc;
+ document.getElementById('modalTime').textContent=s.time;
+ document.getElementById('modalPrice').textContent=money(s.price);
+ document.getElementById('modalWhats').href=makeWhats(s);
+ document.getElementById('serviceModal').classList.add('open');
+}
+function closeModal(){document.getElementById('serviceModal').classList.remove('open')}
+document.getElementById('serviceModal').addEventListener('click',e=>{if(e.target.id==='serviceModal')closeModal()});
+function toggleCare(btn){btn.parentElement.classList.toggle('open');btn.querySelector('span').textContent=btn.parentElement.classList.contains('open')?'−':'+'}
+function addCurrentToCart(){if(currentService){addToCart(currentService.id);closeModal();toggleCart(true)}}
+function addToCart(id){const s=services.find(x=>x.id===id);if(!selected.some(x=>x.id===id))selected.push(s);updateCart()}
+function removeFromCart(id){selected=selected.filter(x=>x.id!==id);updateCart()}
+function updateCart(){
+ document.getElementById('cartCount').textContent=selected.length;
+ const box=document.getElementById('cartItems');
+ if(!selected.length)box.innerHTML='<div class="empty">Nenhum serviço selecionado.<br>Escolha um procedimento no catálogo.</div>';
+ else box.innerHTML=selected.map(s=>`<div class="cart-item"><img src="${s.img}"><div style="flex:1"><h4>${s.name}</h4><p>${s.category} • ${s.time}</p><p class="price">${money(s.price)}</p></div><button onclick="removeFromCart(${s.id})" style="background:none;border:0;color:#777;font-size:18px">×</button></div>`).join('');
+ const total=selected.reduce((a,s)=>a+s.price,0);
+ document.getElementById('cartTotal').textContent=money(total);
+ document.getElementById('cartWhats').href=makeWhatsList();
+}
+function toggleCart(force){const p=document.getElementById('cartPanel');if(force===true)p.classList.add('open');else p.classList.toggle('open')}
+function makeWhats(s){return `https://wa.me/${whatsapp}?text=${encodeURIComponent(`Olá! Gostaria de agendar ${s.name}. Valor: ${money(s.price)}. Gostaria de verificar os horários disponíveis.`)}`}
+function makeWhatsList(){const names=selected.map(s=>s.name).join(', ');const total=selected.reduce((a,s)=>a+s.price,0);return `https://wa.me/${whatsapp}?text=${encodeURIComponent(`Olá! Gostaria de agendar os seguintes serviços: ${names}. Total: ${money(total)}. Gostaria de verificar os horários disponíveis.`)}`}
+const general=`https://wa.me/${whatsapp}?text=${encodeURIComponent('Olá! Gostaria de agendar um horário para fazer minhas sobrancelhas.')}`;
+document.getElementById('whatsMain').href=general;
+document.getElementById('whatsFooter').href=general;
+renderServices();updateCart();
+</script>
+</body>
+</html>
