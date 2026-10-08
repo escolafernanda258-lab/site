@@ -12,11 +12,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 
-  <script src="js/firebase-config.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+
+<script src="js/firebase-config.js"></script>
 
   <style>
     :root {
@@ -304,35 +308,7 @@
       mensagem.className = "mensagem";
     }
 
-    /*
-      Se já estiver logado e for administrador,
-      vai direto para o painel.
-    */
-    auth.onAuthStateChanged(async (user) => {
-
-      if (!user) return;
-
-      try {
-
-        const doc = await db
-          .collection("usuarios")
-          .doc(user.uid)
-          .get();
-
-        if (doc.exists && doc.data().perfil === "admin") {
-
-          window.location.href = "admin.html";
-
-        }
-
-      } catch (erro) {
-
-        console.error("Erro ao verificar usuário:", erro);
-
-      }
-
-    });
-
+    
 
     document
       .getElementById("loginForm")
