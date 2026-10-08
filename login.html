@@ -1,0 +1,454 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Auréa Brow Studio | Acesso Administrativo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script src="js/firebase-config.js"></script>
+
+  <style>
+    :root {
+      --black: #070707;
+      --black2: #101010;
+      --gold: #c8a45d;
+      --gold2: #efd28b;
+      --cream: #f4ede0;
+      --white: #fffaf1;
+      --gray: #aaa49a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 50% 20%, rgba(200,164,93,.12), transparent 35%),
+        linear-gradient(135deg, #050505, #111, #050505);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .login-wrapper {
+      width: 100%;
+      max-width: 470px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .logo h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--gold2);
+      letter-spacing: 1px;
+    }
+
+    .logo p {
+      color: var(--gray);
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-top: -5px;
+    }
+
+    .login-card {
+      background: rgba(16,16,16,.94);
+      border: 1px solid rgba(200,164,93,.35);
+      border-radius: 22px;
+      padding: 42px 35px;
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.6),
+        inset 0 1px 0 rgba(255,255,255,.04);
+      backdrop-filter: blur(10px);
+    }
+
+    .login-card h2 {
+      font-family: 'Cormorant Garamond', serif;
+      text-align: center;
+      font-size: 34px;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--gray);
+      font-size: 13px;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      color: var(--gold2);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(200,164,93,.3);
+      background: #080808;
+      color: var(--white);
+      outline: none;
+      font-family: 'Montserrat', sans-serif;
+      transition: .3s;
+    }
+
+    input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(200,164,93,.1);
+    }
+
+    input::placeholder {
+      color: #777;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--gold2), var(--gold));
+      color: #090909;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      cursor: pointer;
+      transition: .3s;
+      margin-top: 5px;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(200,164,93,.25);
+    }
+
+    .btn-login:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .mensagem {
+      display: none;
+      margin-bottom: 20px;
+      padding: 12px 15px;
+      border-radius: 9px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .erro {
+      display: block;
+      background: rgba(150,30,30,.15);
+      border: 1px solid rgba(220,70,70,.4);
+      color: #ffb0b0;
+    }
+
+    .sucesso {
+      display: block;
+      background: rgba(50,130,80,.15);
+      border: 1px solid rgba(80,180,110,.4);
+      color: #b9f0c9;
+    }
+
+    .voltar {
+      display: block;
+      text-align: center;
+      margin-top: 22px;
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 13px;
+      transition: .3s;
+    }
+
+    .voltar:hover {
+      color: var(--gold2);
+    }
+
+    .detalhe {
+      width: 55px;
+      height: 1px;
+      background: var(--gold);
+      margin: 18px auto 25px;
+    }
+
+    .loading {
+      text-align: center;
+      color: var(--gray);
+      font-size: 12px;
+      margin-top: 15px;
+      display: none;
+    }
+
+    @media (max-width: 500px) {
+      body {
+        padding: 18px;
+      }
+
+      .login-card {
+        padding: 32px 23px;
+      }
+
+      .logo h1 {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-wrapper">
+
+    <div class="logo">
+      <h1>Auréa Brow Studio</h1>
+      <p>Sobrancelhas</p>
+    </div>
+
+    <div class="login-card">
+
+      <h2>Acesso Administrativo</h2>
+
+      <div class="detalhe"></div>
+
+      <p class="subtitle">
+        Entre com sua conta para acessar o painel.
+      </p>
+
+      <div id="mensagem" class="mensagem"></div>
+
+      <form id="loginForm">
+
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="seuemail@email.com"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input
+            type="password"
+            id="senha"
+            placeholder="Digite sua senha"
+            required
+          >
+        </div>
+
+        <button type="submit" class="btn-login" id="btnLogin">
+          Entrar no painel
+        </button>
+
+        <div id="loading" class="loading">
+          Verificando acesso...
+        </div>
+
+      </form>
+
+      <a href="index.html" class="voltar">
+        ← Voltar para o site
+      </a>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    const mensagem = document.getElementById("mensagem");
+    const btnLogin = document.getElementById("btnLogin");
+    const loading = document.getElementById("loading");
+
+    function mostrarMensagem(texto, tipo) {
+      mensagem.textContent = texto;
+      mensagem.className = "mensagem " + tipo;
+    }
+
+    function limparMensagem() {
+      mensagem.textContent = "";
+      mensagem.className = "mensagem";
+    }
+
+    /*
+      Se já estiver logado e for administrador,
+      vai direto para o painel.
+    */
+    auth.onAuthStateChanged(async (user) => {
+
+      if (!user) return;
+
+      try {
+
+        const doc = await db
+          .collection("usuarios")
+          .doc(user.uid)
+          .get();
+
+        if (doc.exists && doc.data().perfil === "admin") {
+
+          window.location.href = "admin.html";
+
+        }
+
+      } catch (erro) {
+
+        console.error("Erro ao verificar usuário:", erro);
+
+      }
+
+    });
+
+
+    document
+      .getElementById("loginForm")
+      .addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        limparMensagem();
+
+        const email = document
+          .getElementById("email")
+          .value
+          .trim();
+
+        const senha = document
+          .getElementById("senha")
+          .value;
+
+        if (!email || !senha) {
+
+          mostrarMensagem(
+            "Preencha seu e-mail e sua senha.",
+            "erro"
+          );
+
+          return;
+        }
+
+        btnLogin.disabled = true;
+        btnLogin.textContent = "Entrando...";
+        loading.style.display = "block";
+
+        try {
+
+          const credencial =
+            await auth.signInWithEmailAndPassword(
+              email,
+              senha
+            );
+
+          const usuario = credencial.user;
+
+          const doc = await db
+            .collection("usuarios")
+            .doc(usuario.uid)
+            .get();
+
+          /*
+            Verifica se existe o cadastro do usuário
+            na coleção usuarios e se ele possui perfil admin.
+          */
+          if (
+            !doc.exists ||
+            doc.data().perfil !== "admin"
+          ) {
+
+            await auth.signOut();
+
+            mostrarMensagem(
+              "Acesso negado. Esta conta não possui permissão de administrador.",
+              "erro"
+            );
+
+            return;
+          }
+
+          mostrarMensagem(
+            "Login realizado! Abrindo painel...",
+            "sucesso"
+          );
+
+          setTimeout(() => {
+            window.location.href = "admin.html";
+          }, 800);
+
+        } catch (erro) {
+
+          console.error("Erro no login:", erro);
+
+          let texto =
+            "Não foi possível entrar. Verifique seu e-mail e senha.";
+
+          if (
+            erro.code === "auth/user-not-found" ||
+            erro.code === "auth/invalid-credential"
+          ) {
+            texto = "E-mail ou senha incorretos.";
+          }
+
+          if (erro.code === "auth/wrong-password") {
+            texto = "Senha incorreta.";
+          }
+
+          if (erro.code === "auth/invalid-email") {
+            texto = "Digite um e-mail válido.";
+          }
+
+          if (erro.code === "auth/too-many-requests") {
+            texto =
+              "Muitas tentativas. Aguarde um pouco e tente novamente.";
+          }
+
+          mostrarMensagem(texto, "erro");
+
+        } finally {
+
+          btnLogin.disabled = false;
+          btnLogin.textContent = "Entrar no painel";
+          loading.style.display = "none";
+
+        }
+
+      });
+
+  </script>
+
+</body>
+</html>
+
