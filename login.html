@@ -541,61 +541,82 @@
                BUSCA O USUÁRIO NO FIRESTORE
             ========================================== */
 
-            const doc =
-              await db
-                .collection("usuarios")
-                .doc(usuario.uid)
-                .get();
+           const doc = await db
+  .collection("usuarios")
+  .doc(usuario.uid)
+  .get();
+
+console.log("=================================");
+console.log("VERIFICAÇÃO DO ADMIN");
+console.log("UID DO FIREBASE AUTH:", usuario.uid);
+console.log("E-MAIL:", usuario.email);
+console.log("DOCUMENTO EXISTE:", doc.exists);
+
+if (doc.exists) {
+
+  const dados = doc.data();
+
+  console.log("DADOS COMPLETOS:", dados);
+  console.log("PERFIL ENCONTRADO:", dados.perfil);
+  console.log("TIPO DO PERFIL:", typeof dados.perfil);
+
+} else {
+
+  console.log(
+    "NÃO FOI ENCONTRADO DOCUMENTO COM ESTE ID:",
+    usuario.uid
+  );
+
+}
+
+console.log("=================================");
 
 
-            console.log(
-              "DOCUMENTO EXISTE:",
-              doc.exists
-            );
+if (!doc.exists) {
+
+  await auth.signOut();
+
+  mostrarMensagem(
+    "O usuário entrou no Firebase Authentication, mas não existe um documento correspondente na coleção usuarios.",
+    "erro"
+  );
+
+  return;
+}
 
 
-            if (doc.exists) {
-
-              console.log(
-                "DADOS DO USUARIO:",
-                doc.data()
-              );
-
-              console.log(
-                "PERFIL:",
-                doc.data().perfil
-              );
-
-            }
+const dadosUsuario = doc.data();
 
 
-            console.log(
-              "================================"
-            );
+if (
+  String(dadosUsuario.perfil)
+    .trim()
+    .toLowerCase() !== "admin"
+) {
+
+  await auth.signOut();
+
+  mostrarMensagem(
+    "O usuário existe, mas o campo perfil não está como admin.",
+    "erro"
+  );
+
+  return;
+}
 
 
-            /* =========================================
-               VERIFICA PERMISSÃO ADMIN
-            ========================================== */
+console.log("ADMINISTRADOR CONFIRMADO!");
 
-            if (
-              !doc.exists ||
-              doc.data().perfil !== "admin"
-            ) {
+mostrarMensagem(
+  "Login realizado! Abrindo painel...",
+  "sucesso"
+);
 
-              await auth.signOut();
+setTimeout(() => {
 
+  window.location.href = "admin.html";
 
-              mostrarMensagem(
-                "Acesso negado. Esta conta não possui permissão de administrador.",
-                "erro"
-              );
-
-
-              return;
-
-            }
-
+}, 800);
 
             /* =========================================
                LOGIN AUTORIZADO
